@@ -1,5 +1,9 @@
 #include <iostream>
 #include <string>
+#include <functional>
+
+#include "e_stack_exception.h"
+#include "e_stack_empty.h"
  
 using namespace std;
 
@@ -9,7 +13,7 @@ template <typename T> class Stack {
    public:
 
    ~Stack();
-   void Push(const T &value); //Помещение объекта в стек;
+   void Push(const T &a); //Помещение объекта в стек;
    const T Pop(); // Извлечение объекта из стека;
    int Size(); // Получение размерности стека.
 
@@ -17,7 +21,7 @@ template <typename T> class Stack {
    
    struct Node // элемент односвязного списка
 	{
-		const T value_; // значение
+		const T b; // значение
 
 		Node *prev_ = nullptr; // указатель на предыдущий элемент
 	};
@@ -25,3 +29,22 @@ template <typename T> class Stack {
    int sz = 0; // изначальная размерность
 
 };
+
+template <class T> Stack<T>::~Stack()
+{
+	Clear();
+}
+
+void Stack<T>::Push(const T &a)
+{
+	Node *node = new Node{ a, back_ }; // создаем новое звено, предыдущее для которого - последнее на данный момент звено
+
+	if (node == nullptr) 
+	{
+		throw EStackException("Lack of memory."); // случай, если для элемента не выделилась память
+	}
+
+	back_ = node; // делаем только что созданное звено последним
+
+	size_++; // размерность стека
+}
