@@ -25,17 +25,17 @@ template <typename T> class Stack {
 
 		Node *prev_ = nullptr; // указатель на предыдущий элемент
 	};
-
+   Node *back_ = nullptr; // последний элемент стека
    int sz = 0; // изначальная размерность
 
 };
 
 template <class T> Stack<T>::~Stack()
 {
-	Clear();
+    //Clear();
 }
 
-void Stack<T>::Push(const T &a)
+template <class T> void Stack<T>::Push(const T &a)
 {
 	Node *node = new Node{ a, back_ }; // создаем новое звено, предыдущее для которого - последнее на данный момент звено
 
@@ -46,5 +46,5 @@ void Stack<T>::Push(const T &a)
 
 	back_ = node; // делаем только что созданное звено последним
 
-	size_++; // размерность стека
+    sz++; // размерность стека
 }

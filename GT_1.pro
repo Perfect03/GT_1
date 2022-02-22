@@ -14,3 +14,8 @@ SOURCES += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+HEADERS += \
+    e_stack_empty.h \
+    e_stack_exception.h \
+    stack.h
