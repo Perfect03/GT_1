@@ -1,4 +1,6 @@
-﻿
+﻿#ifndef PERSON_H
+#define PERSON_H
+
 #include <iostream>
 #include <string>
 #include <functional>
@@ -26,3 +28,5 @@ public:
 	void setpatronymic(const std::string& patronymic) { patronymic_ = patronymic; }
 
 };
+
+#endif

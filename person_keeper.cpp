@@ -24,7 +24,7 @@ void PersonKeeper::ReadPersons(QString path)
 
 	if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) // если файл недоступен для чтения
 	{
-		throw "Error: readPersons(): Couldn't open a file!"; // то вызываем исключение
+		throw "Couldn't open a file!"; // то вызываем исключение
 	}
 
 	QTextStream stream(&file); // поток текстовых данных файла
@@ -56,6 +56,17 @@ void PersonKeeper::WritePersons(QString path) const
 	file.close();
 }
 
+QStringList PersonKeeper::ToQStringList() const
+{
+	QStringList string_list;
+
+	stack_.ForEach([&](const Person &value)
+	{
+		string_list.prepend(value.last_name() + " " + value.first_name() + " " + value.patronymic());
+	});
+
+	return string_list;
+}
 
 int PersonKeeper::Size()
 {
