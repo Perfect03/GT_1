@@ -20,7 +20,21 @@ PersonKeeper &PersonKeeper::Instance()
 
 void PersonKeeper::ReadPersons(QString path)
 {
-	
+	QFile file(path);
+
+	if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) // если файл недоступен для чтения
+	{
+		throw "Error: readPersons(): Couldn't open a file!"; // то вызываем исключение
+	}
+
+	QTextStream stream(&file); // поток текстовых данных файла
+	QString line; // переменная, в которую считываются имена
+
+	while (stream.readLineInto(&line)) // цикл по всем именам в файле
+	{
+		stack_.Push(Person(line));
+	}
+	file.close();
 }
 
 void PersonKeeper::WritePersons(QString path) const
