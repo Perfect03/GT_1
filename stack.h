@@ -1,3 +1,5 @@
+﻿#ifndef STACK_H
+#define STACK_H
 
 #include <iostream>
 #include <string>
@@ -92,3 +94,5 @@ template <class T> const T Stack<T>::Pop()
 
     return value; // возвращаем сохраненое значение звена
 }
+
+#endif
