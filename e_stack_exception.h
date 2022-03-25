@@ -1,6 +1,6 @@
 #ifndef ESTACKEXCEPTION_H
 #define ESTACKEXCEPTION_H
-#include <cstring>
+#include <string.h>
 
 class EStackException
 {
@@ -9,20 +9,20 @@ public:
 	{
 		_msg = new char[strlen(msg) + 1]; // память под сообщение об ошибке
 
-		strcpy(_msg, msg);
+        _msg = strdup(msg);
 	}
 	EStackException(const EStackException &obj)
 	{
 		_msg = new char[strlen(obj._msg) + 1];
 
-		strcpy(_msg, obj._msg); 
+    _msg = strdup(obj._msg);
 	}
 	~EStackException()
 	{
 		delete _msg;
 	}
 
-	const char *what() const { return _msg; }
+    const char *m() const { return _msg; }
 
 private:
 	char *_msg;
