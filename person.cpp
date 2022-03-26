@@ -6,9 +6,7 @@ Person::Person()
 }
 
 Person::Person(QString last_name, QString first_name, QString patronymic)
-	: last_name_(last_name)
-	, first_name_(first_name)
-	, patronymic_(patronymic)
+    : last_name_(last_name), first_name_(first_name), patronymic_(patronymic)
 {
 
 }

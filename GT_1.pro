@@ -8,7 +8,9 @@ CONFIG -= app_bundle
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-        main.cpp
+        main.cpp \
+        person.cpp \
+        person_keeper.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -18,4 +20,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     e_stack_empty.h \
     e_stack_exception.h \
+    person.h \
+    person_keeper.h \
     stack.h

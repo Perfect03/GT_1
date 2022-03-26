@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
    QCoreApplication a(argc, argv);
 
    setlocale(LC_ALL, "Russian");
-
+/*
     Stack<const char *> t;
     t.Push("+");
     t.Push("+");
@@ -31,11 +31,11 @@ int main(int argc, char *argv[])
 
     Stack<int> e;
     e.Pop(); // пробуем извлечь элемент из пустого стека - получаем исключение
-
+*/
     //2-я часть
-    //PersonKeeper* b = Singleton<PersonKeeper>::Instance();
-    // работа не доделана, пока что не могу разобраться, как работать с "singleton"-ом.
-    //b->ReadPersons("C:/Users/User/Documents/GT_1/txts/persons.txt");
-   // b->WritePersons("C:/Users/User/Documents/GT_1/txts/for_write.txt");
-
+    auto& b = PersonKeeper::Instance();
+    b.ReadPersons("C:/Users/User/Documents/GT_1/build-GT_1-Desktop_Qt_6_2_3_MinGW_64_bit-Debug/persons.txt");
+    cout << endl << "Count of names: " << b.Size() << endl;
+    b.WritePersons("C:/Users/User/Documents/GT_1/build-GT_1-Desktop_Qt_6_2_3_MinGW_64_bit-Debug/for_write.txt");
+// функции работают только при таких названиях папок с txt, как ни странно
 }

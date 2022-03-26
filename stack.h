@@ -18,6 +18,9 @@ template <typename T> class Stack {
    ~Stack(); // деструктор
    void Push(const T &a); // Помещение объекта в стек;
    const T Pop(); // Извлечение объекта из стека;
+
+   void ForEach(std::function<void(const T &value)> d) const; // функция перебора всех имеющихся значений,
+
    int Size(); // размерность стека
 
    private:
@@ -79,6 +82,17 @@ template <class T> const T Stack<T>::Pop()
 template <class T> int Stack<T>::Size()
 {
     return size; // возвращаем известную размерность стека
+}
+
+template <class T> void Stack<T>::ForEach(std::function<void(const T &value)> d) const
+{
+    Node *k = back_; // начинаем с последнего элемента, т.к. это стек
+
+    while (k != nullptr) // пока элементы существуют
+    {
+        d(k->b); // вызов функции обратной связи
+        k = k->prev_;
+    }
 }
 
 #endif

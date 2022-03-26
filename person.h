@@ -1,32 +1,29 @@
 ﻿#ifndef PERSON_H
 #define PERSON_H
 
-#include <iostream>
-#include <string>
-#include <functional>
-#include <list>
+#include <QString>
+#include <QRegularExpression>
  
 using namespace std;
 
 class Person
 {
-private:
-	long key;
-	std::string last_name_;
-	std::string first_name_;
-	std::string patronymic_;
 public:
 	Person();
-	Person(const Person&);
+    Person(QString last_name, QString first_name, QString patronymic);
+    Person(QString full_name);
 
-	const std::string& getLastName() const { return last_name_; }
-	const std::string& getFirstName() const { return first_name_; }
-	const std::string& getPatronymic() const { return patronymic_; }
+    void set_last_name(const QString &last_name) { last_name_ = last_name; }
+    void set_first_name(const QString &first_name) { first_name_ = first_name; }
+    void set_patronymic(const QString &patronymic) { patronymic_ = patronymic; }
 
-	void setLastName(const std::string& last_name)  { last_name_ = last_name; }	
-	void setFirstame(const std::string& first_name) { first_name_ = first_name; }
-	void setpatronymic(const std::string& patronymic) { patronymic_ = patronymic; }
-
+    const QString &last_name() const { return last_name_; }
+    const QString &first_name() const { return first_name_; }
+    const QString &patronymic() const { return patronymic_; }
+private:
+    QString last_name_;
+    QString first_name_;
+    QString patronymic_;
 };
 
 #endif
