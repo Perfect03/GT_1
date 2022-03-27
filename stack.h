@@ -12,12 +12,16 @@
 using namespace std;
 
 template <typename T> class Stack {
+
    public:
-   Stack(int = 5); // конструктор по умолчанию, по умолчанию стек содержит 5 узлов
-   ~Stack();
-   void Push(const T &a); //Помещение объекта в стек;
-   void Print(); // Вывод элементов стека
+
+   ~Stack(); // деструктор
+   void Push(const T &a); // Помещение объекта в стек;
    const T Pop(); // Извлечение объекта из стека;
+
+   void ForEach(std::function<void(const T &value)> d) const; // функция перебора всех имеющихся значений,
+
+   int Size(); // размерность стека
 
    private:
    
@@ -26,22 +30,19 @@ template <typename T> class Stack {
 		const T b; // значение
 
 		Node *prev_ = nullptr; // указатель на предыдущий элемент
-	};
-   T *stackPtr; // указатель на стек
+    };
    Node *back_ = nullptr; // последний элемент стека
    int size = 0; // изначальная размерность
-
 };
-
-template <typename T> Stack<T>::Stack(int maxSize) : size(maxSize) // конструктор
-{
-    stackPtr = new T[size];
-    back_ = 0; // инициализируем текущий элемент нулем
-}
 
 template <class T> Stack<T>::~Stack()
 {
-    delete [] stackPtr;
+    while (back_ != nullptr) // пока в стеке не закончились элементы
+        {
+            Node *tmp = back_; // сохраняем последний элемент
+            back_ = back_->prev_; // делаем последним элементом предпоследний
+            delete tmp; // удаляем указатель на последний элемент
+        }
 }
 
 template <class T> void Stack<T>::Push(const T &a)
@@ -56,23 +57,6 @@ template <class T> void Stack<T>::Push(const T &a)
 	back_ = node; // делаем только что созданное звено последним
 
     size++; // размерность стека
-}
-
-template <class T> void Stack<T>::Print()
-{
-    if (back_ == nullptr) // если стек пуст - ошибка
-    {
-        throw EStackEmpty();
-    }
-
-            else {
-        Node* q=back_;
-                while (q != nullptr)
-                {
-                    cout << q->b << ' ';
-                    q = q->prev_;
-                }
-            }
 }
 
 template <class T> const T Stack<T>::Pop()
@@ -90,9 +74,25 @@ template <class T> const T Stack<T>::Pop()
 
     delete temp; // удаляем узел
 
-    size--;
+    size--; // уменьшается размерность
 
     return value; // возвращаем сохраненое значение звена
+}
+
+template <class T> int Stack<T>::Size()
+{
+    return size; // возвращаем известную размерность стека
+}
+
+template <class T> void Stack<T>::ForEach(std::function<void(const T &value)> d) const
+{
+    Node *k = back_; // начинаем с последнего элемента, т.к. это стек
+
+    while (k != nullptr) // пока элементы существуют
+    {
+        d(k->b); // вызов функции обратной связи
+        k = k->prev_;
+    }
 }
 
 #endif

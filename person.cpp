@@ -6,16 +6,14 @@ Person::Person()
 }
 
 Person::Person(QString last_name, QString first_name, QString patronymic)
-	: last_name_(last_name)
-	, first_name_(first_name)
-	, patronymic_(patronymic)
+    : last_name_(last_name), first_name_(first_name), patronymic_(patronymic)
 {
 
 }
 
 Person::Person(QString full_name)
 {
-	QStringList words = full_name.split(QRegularExpression("\\s+"), Qt::SkipEmptyParts); // разбиваем полученную строку на не пустые слова
+    QStringList words = full_name.split(QRegularExpression("\\s+"), Qt::SkipEmptyParts); // разбиваем полученную строку на непустые слова
 
 	if (words.size() != 2 && words.size() != 3) // в строке должно быть 2 или 3 слова (ФИ или ФИО)
 	{
