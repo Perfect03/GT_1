@@ -1,5 +1,5 @@
-Kovalev Aleksandr Markovich
-Moskvin Mihail Konstantinovich
+Kovalev        Aleksandr	Markovich
+Moskvin                           Mihail	Konstantinovich
 Blinov Dmitrij Sergeevich
 Evdokimova Dar'ya Artyomovna
 Pavlov Sergej Fyodorovich

@@ -28,17 +28,17 @@ void PersonKeeper::ReadPersons(QString path)
 	}
 
     QTextStream f(&file); // поток текстовых данных файла
-    Stack<Person> s; // временный стек
+    Stack<Person> s; // временный стек (для будущей записи в правильном порядке)
     QString line; // переменная, в которую в итогу считаются имена
 
     while (f.readLineInto(&line)) // цикл по всем именам в файле
     {
-        s.Push(Person(line)); // записываем в стек
+        s.Push(Person(line)); // сначала записываем имена во временный стек
     }
 
-    while (s.Size() != 0) // цикл по всем именам в файле
+    while (s.Size() != 0)
 	{
-        stack_.Push(s.Pop()); // записываем в стек
+        stack_.Push(s.Pop()); // а теперь записываем имена из временного стека в основной. Только так имена запишутся в правильном порядке
     }
     file.close();
 }

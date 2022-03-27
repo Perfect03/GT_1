@@ -21,9 +21,7 @@ public:
 
 private:
     PersonKeeper();
-    PersonKeeper(const PersonKeeper &);
     ~PersonKeeper();
-    PersonKeeper &operator=(const PersonKeeper &);
 
 	Stack<Person> stack_; // стек имён
 };
